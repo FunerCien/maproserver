@@ -20,9 +20,8 @@ public class MenuService implements MenuServiceInt {
 	@Override
 	@Transactional(readOnly = true)
 	public Set<Menu> findByMenuAndProfiles(Menu menu, Set<Profile> profiles) {
-		Set<Menu> menus = menuDao.findByMenuAndProfiles(menu, profiles);
+		Set<Menu> menus = null;
 		for (Menu menuToFilter : menus) {
-			menuToFilter.setMenus(findByMenuAndProfiles(menuToFilter, profiles));
 		}
 		return menus;
 	}

@@ -8,11 +8,7 @@ import com.cigolweb.maproserver.entities.Menu;
 public final class MenuDeliveryPrepare {
 
 	public static Menu sendMenu(Menu menu) {
-		menu.setMenu(null);
-		menu.setProfiles(null);
-		for (Menu menus : menu.getMenus()) {
-			sendMenu(menus);
-		}
+		
 		return menu;
 	}
 

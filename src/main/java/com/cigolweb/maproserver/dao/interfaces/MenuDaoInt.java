@@ -9,6 +9,5 @@ import com.cigolweb.maproserver.entities.Profile;
 
 public interface MenuDaoInt extends CrudRepository<Menu, Long> {
 
-	public Set<Menu> findByMenuAndProfiles(Menu menu, Set<Profile> profiles);
 	
 }
