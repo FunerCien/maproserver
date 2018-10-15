@@ -25,13 +25,7 @@ public class OptionController {
 	public Collection<Option> getAllOptions() {
 		Collection<Option> options = new HashSet<Option>();
 		for (Option option : optionService.findAll()) {
-			if (option.getClass().equals(Menu.class)) {
-				Menu optionMenu = ((Menu) option);
-				limitMenuTree(optionMenu);
-				options.add(optionMenu);
-			} else {
-				options.add(option);
-			}
+			options.add(option.getClass().equals(Menu.class) ? limitMenuTree(((Menu) option)) : option);
 		}
 		return options;
 	}
