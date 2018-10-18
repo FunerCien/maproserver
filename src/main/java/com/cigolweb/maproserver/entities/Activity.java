@@ -2,8 +2,10 @@ package com.cigolweb.maproserver.entities;
 
 import java.io.Serializable;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
@@ -14,14 +16,15 @@ public class Activity extends Option implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "module_act", length = 30)
-	private String module;
+	@ManyToOne(fetch = FetchType.LAZY)
+	@JoinColumn(name = "id_mod")
+	private Module module;
 
-	public String getModule() {
+	public Module getModule() {
 		return module;
 	}
 
-	public void setModule(String module) {
+	public void setModule(Module module) {
 		this.module = module;
 	}
 

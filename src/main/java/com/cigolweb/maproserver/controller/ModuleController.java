@@ -13,38 +13,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.cigolweb.maproserver.entities.Menu;
-import com.cigolweb.maproserver.entities.Option;
-import com.cigolweb.maproserver.service.interfaces.OptionServiceInt;
+import com.cigolweb.maproserver.entities.Module;
+import com.cigolweb.maproserver.service.interfaces.ModuleServiceInt;
 
 @CrossOrigin(origins = { "http://localhost:4200" })
 @RestController
-@RequestMapping("/option")
-public class OptionController {
+@RequestMapping("/module")
+public class ModuleController {
 
 	@Autowired
-	private OptionServiceInt optionService;
+	private ModuleServiceInt moduleService;
 
 	@GetMapping("/all/")
-	public Collection<Option> getAllOptions() {
-		Collection<Option> options = new HashSet<Option>();
-		for (Option option : optionService.findAll()) {
-			options.add(option.getClass().equals(Menu.class) ? limitMenuTree(((Menu) option)) : option);
+	public Collection<Module> getAll() {
+		Collection<Module> modules = new HashSet<Module>();
+		for (Module module : moduleService.findAll()) {
+			modules.add(module.limit());
 		}
-		return options;
+		return modules;
 	}
 
 	@PostMapping("/create/")
 	@ResponseStatus(HttpStatus.CREATED)
-	public Option create(@RequestBody Option option) {
-		return optionService.save(option);
-	}
-
-	private Menu limitMenuTree(Menu menu) {
-		for (Menu subMenu : menu.getMenus()) {
-			limitMenuTree(subMenu.limit());
-		}
-		return menu;
+	public Module create(@RequestBody Module module) {
+		return moduleService.save(module);
 	}
 
 }

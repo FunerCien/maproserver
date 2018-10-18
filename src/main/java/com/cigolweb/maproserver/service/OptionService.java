@@ -19,7 +19,13 @@ public class OptionService implements OptionServiceInt {
 	@Override
 	@Transactional(readOnly = true)
 	public Collection<Option> findAll() {
-		return  (Collection<Option>) optionDao.findBasicOptions();
+		return (Collection<Option>) optionDao.findBasicOptions();
+	}
+
+	@Override
+	@Transactional(readOnly = false)
+	public Option save(Option option) {
+		return optionDao.save(option);
 	}
 
 }
