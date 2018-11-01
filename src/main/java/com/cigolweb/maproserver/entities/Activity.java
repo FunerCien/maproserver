@@ -28,4 +28,9 @@ public class Activity extends Option implements Serializable {
 		this.module = module;
 	}
 
+	public Activity limit() {
+		this.module = null;
+		return this;
+	}
+
 }

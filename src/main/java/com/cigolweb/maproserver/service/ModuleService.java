@@ -18,6 +18,12 @@ public class ModuleService implements ModuleServiceInt {
 
 	@Override
 	@Transactional(readOnly = true)
+	public Boolean existsByName(String name) {
+		return moduleDao.existsByName(name);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
 	public Collection<Module> findAll() {
 		return (Collection<Module>) moduleDao.findAll();
 	}
